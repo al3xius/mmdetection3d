@@ -313,7 +313,10 @@ val_evaluator = dict(
     backend_args=backend_args)
 test_evaluator = val_evaluator
 
-vis_backends = [dict(type='LocalVisBackend')]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+    dict(type='WandbVisBackend')
+]
 visualizer = dict(
     type='Det3DLocalVisualizer', vis_backends=vis_backends, name='visualizer')
 
@@ -381,4 +384,6 @@ log_processor = dict(window_size=50)
 default_hooks = dict(
     logger=dict(type='LoggerHook', interval=50),
     checkpoint=dict(type='CheckpointHook', interval=5))
-custom_hooks = [dict(type='DisableObjectSampleHook', disable_after_epoch=15)]
+custom_hooks = [
+    dict(type='DisableObjectSampleHook', disable_after_epoch=15),
+]
